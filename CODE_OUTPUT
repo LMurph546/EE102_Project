@@ -1,0 +1,119 @@
+Summary Statistics (Untrimmed Data):
+                        Mean    Median      Mode     Min       Q1        Q3        Max      Variance   Std_Dev
+Life_Expectancy        71.38     72.80     75.10   47.50    65.30     77.00      83.90  6.226000e+01      7.89
+GDP                 18509.00  11400.00  15400.00  624.00  3950.00  26300.00  110000.00  3.798998e+08  19491.02
+Daily_Income           20.10     12.10     11.00    1.58     5.19     25.60     126.00  4.414800e+02     21.01
+CO2_Emissions           5.02      2.78      1.20    0.04     0.75      7.01      47.50  3.808000e+01      6.17
+Children_per_Woman      2.88      2.36      1.53    0.95     1.73      4.02       7.45  2.160000e+00      1.47
+Child_Mortality        33.38     18.30      5.05    2.34     8.04     54.20     142.00  1.135230e+03     33.69
+Trimmed 1 outliers from Life_Expectancy
+Trimmed 3 outliers from GDP
+Trimmed 2 outliers from Daily_Income
+Trimmed 2 outliers from CO2_Emissions
+Trimmed 1 outliers from Children_per_Woman
+Trimmed 4 outliers from Child_Mortality
+
+Rows remaining after trimming: 183
+
+Summary Statistics (Trimmed Data):
+                        Mean    Median      Mode     Min       Q1        Q3       Max      Variance   Std_Dev
+Life_Expectancy        71.62     72.80     75.10   47.90    66.20     76.90     83.90  5.679000e+01      7.54
+GDP                 17328.71  11400.00  15400.00  624.00  4075.00  25150.00  65500.00  2.641589e+08  16252.97
+Daily_Income           18.91     12.10     11.00    1.58     5.55     25.10     76.80  3.247700e+02     18.02
+CO2_Emissions           4.62      2.81      1.20    0.04     0.85      6.62     20.90  2.333000e+01      4.83
+Children_per_Woman      2.81      2.34      1.67    1.13     1.74      3.69      6.53  1.850000e+00      1.36
+Child_Mortality        31.39     18.30      5.05    2.34     8.15     49.45    129.00  9.042800e+02     30.07
+
+ Correlation with Life Expectancy:
+Life_Expectancy       1.000000
+GDP                   0.666888
+Daily_Income          0.664457
+CO2_Emissions         0.544967
+Children_per_Woman   -0.803966
+Child_Mortality      -0.854217
+Name: Life_Expectancy, dtype: float64
+
+ Correlation Between Selected Input Variables:
+                    Child_Mortality  Children_per_Woman       GDP
+Child_Mortality            1.000000            0.889053 -0.569604
+Children_per_Woman         0.889053            1.000000 -0.570005
+GDP                       -0.569604           -0.570005  1.000000
+
+Normalized Input Variables (0 to 1 range):
+   Child_Mortality  Children_per_Woman       GDP
+0         0.534584            0.758462  0.014135
+1         0.687813            0.769231  0.068351
+2         0.059860            0.121538  0.098523
+3         0.009094            0.029231  0.503547
+4         0.040527            0.089231  0.562061
+Training set size: 173 rows
+Testing set size: 20 rows
+
+ 1-Variable Models
+Child_Mortality → Y = 77.8245 + -28.3985·Child_Mortality
+Children_per_Woman → Y = 80.0181 + -28.3748·Children_per_Woman
+GDP → Y = 66.2625 + 32.4812·GDP
+
+ 2-Variable Models
+('Child_Mortality', 'Children_per_Woman') → Y = 78.5254 + -23.3851·Child_Mortality + -6.0499·Children_per_Woman
+('Child_Mortality', 'GDP') → Y = 74.5095 + -23.0274·Child_Mortality + 13.1877·GDP
+('Children_per_Woman', 'GDP') → Y = 75.4803 + -21.5309·Children_per_Woman + 15.4512·GDP
+
+ 3-Variable Model
+['Child_Mortality', 'Children_per_Woman', 'GDP'] → Y = 74.9275 + -20.9230·Child_Mortality + -2.7368·Children_per_Woman + 12.7862·GDP
+
+ Model Evaluation on Test Data (Using MSE and R²)
+
+Model ['Child_Mortality']:
+  Mean Squared Error (MSE): 24.0620
+  R² Score: 0.5432
+
+Model ['Children_per_Woman']:
+  Mean Squared Error (MSE): 19.8075
+  R² Score: 0.6240
+
+Model ['GDP']:
+  Mean Squared Error (MSE): 49.0795
+  R² Score: 0.0683
+
+Model ['Child_Mortality', 'Children_per_Woman']:
+  Mean Squared Error (MSE): 22.0115
+  R² Score: 0.5821
+
+Model ['Child_Mortality', 'GDP']:
+  Mean Squared Error (MSE): 23.9690
+  R² Score: 0.5450
+
+Model ['Children_per_Woman', 'GDP']:
+  Mean Squared Error (MSE): 20.0540
+  R² Score: 0.6193
+
+Model ['Child_Mortality', 'Children_per_Woman', 'GDP']:
+  Mean Squared Error (MSE): 22.7817
+  R² Score: 0.5675
+
+ Predicted vs Actual (first 10 rows):
+  Predicted: 64.26       Actual: 64.50
+  Predicted: 73.38       Actual: 67.00
+  Predicted: 77.17       Actual: 75.90
+  Predicted: 86.38       Actual: 74.70
+  Predicted: 55.42       Actual: 59.20
+  Predicted: 70.57       Actual: 58.00
+  Predicted: 69.00       Actual: 72.80
+  Predicted: 76.97       Actual: 73.50
+  Predicted: 75.81       Actual: 73.30
+  Predicted: 80.64       Actual: 81.30
+
+ Heuristic Model MSE: 45.7503
+
+ Heuristic Model — Predicted vs Actual (first 10):
+  Predicted: 68.47       Actual: 64.50
+  Predicted: 69.17       Actual: 67.00
+  Predicted: 69.60       Actual: 75.90
+  Predicted: 69.19       Actual: 74.70
+  Predicted: 66.44       Actual: 59.20
+  Predicted: 67.77       Actual: 58.00
+  Predicted: 69.05       Actual: 72.80
+  Predicted: 69.36       Actual: 73.50
+  Predicted: 69.52       Actual: 73.30
+  Predicted: 69.55       Actual: 81.30
